@@ -1,60 +1,60 @@
-import React, {useState, useEffect, useRef}from "react";
-import { RiPictureInPictureExitFill } from "react-icons/ri";
+import React, { useState, useEffect, useRef } from 'react';
 
 function Todoform(PaymentResponse) {
-    const [input, setInput] = useState(PaymentResponse.edit ? PaymentResponse.edit.value : '');
+  const [input, setInput] = useState(PaymentResponse.edit ? PaymentResponse.edit.value : '');
 
-    const inputRef = useRef(null)
+  const inputRef = useRef(null);
 
-    useEffect(() => {
-        inputRef.current.focus()
-    })
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
-    const handleChange = e => {
-        setInput(e.target.value)
+  const handleChange = e => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    PaymentResponse.onSubmit({
+      id: Math.floor(Math.random() * 10000),
+      text: input
+    });
+    setInput('');
+  };
+
+    return (
+        <form onSubmit={handleSubmit} className='todo-form'>
+          {PaymentResponse.edit ? (
+            <>
+              <input
+                placeholder='Update schedule'
+                value={input}
+                onChange={handleChange}
+                name='text'
+                ref={inputRef}
+                className='todo-input edit'
+              />
+              <button onClick={handleSubmit} className='todo-button edit'>
+                Update
+              </button>
+            </>
+          ) : (
+            <>
+              <input
+                placeholder='Add a todo'
+                value={input}
+                onChange={handleChange}
+                name='text'
+                className='todo-input'
+                ref={inputRef}
+              />
+              <button onClick={handleSubmit} className='todo-button'>
+                Add todo
+              </button>
+            </>
+          )}
+        </form>
+      );
     }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        
-        PaymentResponse.onSubmit({
-            id: Math.floor(Math.random() * 1000),
-            text: input
-        
-        });
-        setInput('');
-    };
-return(
-    <form className='todo-form' onSubmit={handleSubmit}>
-        {PaymentResponse.edit ? ( 
-        <>
-        <input 
-             type='text'
-             placeholder='Update Item'
-             value={input}
-             name='text'
-             className='todo-input'
-             onChange={handleChange}
-             ref={inputRef}
-         />
-         <button className='todo-button edit'>Update</button>
-        </>
-        ):
-        (
-        <>
-        <input
-            type='text'
-             placeholder='Add to do'
-             value={input}
-             name='text'
-             className='todo-input'
-             onChange={handleChange}
-             ref={inputRef}
-        />
-         <button className='todo-button add'>Add Todo</button>
-        </>
-        )}
-    </form>
-    );
-}
-export default Todoform
+    export default Todoform;
