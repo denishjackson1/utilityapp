@@ -50,7 +50,7 @@ function Todoform(PaymentResponse) {
                 ref={inputRef}
               />
               <button onClick={handleSubmit} className='todo-button'>
-                Add Activity
+                Add Activities
               </button>
             </>
           )}
