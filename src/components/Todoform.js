@@ -42,7 +42,7 @@ function Todoform(PaymentResponse) {
           ) : (
             <>
               <input
-                placeholder='Add a todo'
+                placeholder='Enter Todo'
                 value={input}
                 onChange={handleChange}
                 name='text'
