@@ -14,6 +14,7 @@ RUN npm install -g npm@9.1.3
 
 # Copies everything over to Docker environment
 COPY . ./
+RUN npm i react-scripts
 RUN npm run build
 
 CMD [ "npm", "run", "start" ]
