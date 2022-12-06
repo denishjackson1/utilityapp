@@ -1,6 +1,5 @@
 #pull official base image
-FROM node:10 AS builder
-
+FROM node:18-alpine
 # set working directory
 WORKDIR /app
 
@@ -8,10 +7,10 @@ WORKDIR /app
 # install app dependencies
 #copies package.json and package-lock.json to Docker environment
 COPY package.json ./
+COPY package-lock.json ./
 
 # Installs all node packages
 RUN npm install 
-
 
 # Copies everything over to Docker environment
 COPY . ./
