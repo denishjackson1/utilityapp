@@ -1,3 +1,5 @@
+#Stage 1 Deployment
+
 FROM node:18-alpine as builder
 
 WORKDIR /app
@@ -17,6 +19,8 @@ RUN npm run build
 EXPOSE 80
 
 CMD [ "npm", "run", "start" ]
+
+#Stage 2 Deployment
 
 FROM nginx:1.19.0
 
