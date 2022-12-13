@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: todo-app-denish
-        image: denishjackson/todo-app-denish:v2
+        image: denishjackson/todo-app-denish:v3
         ports:
         - containerPort: 3000
         
